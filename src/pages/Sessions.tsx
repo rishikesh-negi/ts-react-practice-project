@@ -1,8 +1,9 @@
-import { useBookedSessionsContext } from "../context/BookedSessionsContext.tsx";
+import type { Session } from "../context/BookedSessionsContext.tsx";
+import { SESSIONS } from "../dummy-sessions.ts";
 import Button from "../ui/Button.tsx";
 
 export default function SessionsPage() {
-  const { sessions } = useBookedSessionsContext();
+  const sessions: Session[] = SESSIONS;
 
   return (
     <main id="sessions-page">
@@ -14,7 +15,7 @@ export default function SessionsPage() {
           you!
         </p>
       </header>
-      {sessions.length ? (
+      {sessions.length > 0 ? (
         <ul id="sessions-list">
           {sessions.map((session) => (
             <li className="session-item" key={session.id}>
@@ -24,11 +25,11 @@ export default function SessionsPage() {
               />
               <div className="session-data">
                 <h3>{session.title}</h3>
-                <p>{session.description}</p>
+                <p>{session.summary}</p>
+                <aside className="actions">
+                  <Button to={`/sessions/${session.id}`}>Learn More</Button>
+                </aside>
               </div>
-              <aside className="actions">
-                <Button>Learn More</Button>
-              </aside>
             </li>
           ))}
         </ul>
