@@ -6,7 +6,7 @@ type InputProps = ComponentPropsWithoutRef<"input"> & {
 
 export default function Input({ label, ...props }: InputProps) {
   return (
-    <p>
+    <p className="control">
       <label htmlFor={props.id}>{label}</label>
       <input {...props} />
     </p>
