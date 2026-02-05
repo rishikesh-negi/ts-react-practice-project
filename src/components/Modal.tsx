@@ -1,10 +1,4 @@
-import {
-  useImperativeHandle,
-  useRef,
-  type ElementType,
-  type ReactNode,
-  type Ref,
-} from "react";
+import { useImperativeHandle, useRef, type ReactNode, type Ref } from "react";
 import { createPortal } from "react-dom";
 
 type ModalProps = {
@@ -12,8 +6,9 @@ type ModalProps = {
   children: ReactNode;
 };
 
-type ModalApi = {
+export type ModalApi = {
   open: () => void;
+  closeModal: () => void;
 };
 
 export default function Modal({ ref, children, ...props }: ModalProps) {
@@ -22,6 +17,9 @@ export default function Modal({ ref, children, ...props }: ModalProps) {
   useImperativeHandle(ref, () => ({
     open() {
       modalDialogRef.current?.showModal();
+    },
+    closeModal() {
+      modalDialogRef.current?.close();
     },
   }));
 
