@@ -5,8 +5,8 @@ import BookedSessionsProvider from "../context/BookedSessionsContext";
 export default function Root() {
   return (
     <>
-      <Header />
       <BookedSessionsProvider>
+        <Header />
         <Outlet />
       </BookedSessionsProvider>
     </>
